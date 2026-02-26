@@ -3594,7 +3594,7 @@ h1, h2, h3, h4, h5, h6,
 
 .roadmap-intro {
   position: relative;
-  padding: 84px 0 92px;
+  padding: 84px 0 0;
   background: #fff;
   overflow: hidden;
 }
@@ -3936,7 +3936,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .faq-title {
-  margin: 0;
+  margin: 0 0 60px;
   text-align: center;
   color: #1c1c1c;
   font-size: 24px;
@@ -4116,8 +4116,9 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .seminar-benefit-card {
+  position: relative;
   border-radius: 8px;
-  overflow: hidden;
+  overflow: visible;
   background: #efe4de;
 }
 
@@ -4166,7 +4167,6 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .seminar-benefit-head h3 span {
-  font-size: 32px;
   line-height: 1.05;
 }
 
@@ -5104,7 +5104,7 @@ h1, h2, h3, h4, h5, h6,
   }
 
   .roadmap-intro {
-    padding: 66px 0 72px;
+    padding: 66px 0 0;
   }
 
   .roadmap-intro::before,
@@ -6383,7 +6383,7 @@ h1, h2, h3, h4, h5, h6,
   }
 
   .roadmap-intro {
-    padding: 52px 0 56px;
+    padding: 52px 0 0;
   }
 
   .roadmap-intro::before,
@@ -6623,10 +6623,6 @@ h1, h2, h3, h4, h5, h6,
     font-size: 17px;
   }
 
-  .seminar-benefit-head h3 span {
-    font-size: 32px;
-  }
-
   .seminar-benefit-body {
     padding: 20px 24px 24px;
   }
@@ -6799,10 +6795,6 @@ h1, h2, h3, h4, h5, h6,
 
   .seminar-benefit-head h3 {
     font-size: 17px;
-  }
-
-  .seminar-benefit-head h3 span {
-    font-size: 32px;
   }
 
   .seminar-benefit-body {
@@ -6983,6 +6975,12 @@ h1, h2, h3, h4, h5, h6,
   column-gap: 14px;
   justify-content: center;
   align-items: center;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  height: auto;
+  overflow: hidden;
 }
 
 .curriculum-dept-photo-wrap {
@@ -7121,6 +7119,9 @@ h1, h2, h3, h4, h5, h6,
     margin-top: 30px;
     grid-template-columns: 1fr;
     row-gap: 14px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
   }
 
   .curriculum-dept-copy {
@@ -9192,9 +9193,10 @@ h1, h2, h3, h4, h5, h6,
   }
 
   .about-aparise-copy {
+    width: 100%;
     max-width: 100%;
     text-align: left;
-    margin: 0 auto;
+    margin: 0;
   }
 
   .about-aparise-visual {
@@ -9656,7 +9658,7 @@ h1, h2, h3, h4, h5, h6,
   }
 
   .roadmap-intro {
-    padding: 56px 0 60px;
+    padding: 56px 0 0;
   }
 
   .roadmap-title {
@@ -9774,13 +9776,23 @@ h1, h2, h3, h4, h5, h6,
     line-height: 1.62;
   }
 
-  .curriculum-dept-photo-wrap {
-    width: min(100%, 420px);
+  .curriculum-dept-photo-wrap,
+  .curriculum-dept-photo-wrap-right {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
     margin-inline: auto;
   }
 
+  .curriculum-dept-photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
+  }
+
   .representative-greeting {
-    padding: 56px 0 64px;
+    padding: 0 0 64px;
   }
 
   .representative-greeting-inner {
@@ -9828,7 +9840,7 @@ h1, h2, h3, h4, h5, h6,
   }
 
   .greeting-body-card {
-    margin-top: 10px;
+    margin-top: 0;
     padding: 20px 14px;
   }
 
@@ -9943,6 +9955,9 @@ h1, h2, h3, h4, h5, h6,
 
   .seminar-benefits-label {
     margin-top: 18px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
     width: min(100%, 320px);
     font-size: 24px;
     padding: 10px;
@@ -9951,22 +9966,52 @@ h1, h2, h3, h4, h5, h6,
   }
 
   .seminar-benefits-cards {
-    margin-top: 18px;
+    margin-top: 0;
     grid-template-columns: 1fr;
     gap: 14px;
+    align-items: start;
+  }
+
+  .seminar-benefit-card {
+    overflow: visible;
+    position: relative;
+    padding-top: 0;
+    height: auto;
+    min-height: 0;
+    max-height: none;
   }
 
   .seminar-benefit-head {
-    min-height: 98px;
-    padding: 20px 20px 14px 118px;
+    position: relative;
+    min-height: 0;
+    height: auto;
+    padding: 16px 20px 14px 80px;
+    border-radius: 10px 10px 0 0;
+    overflow: visible;
+  }
+
+  .seminar-benefit-number {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    width: 52px;
+    height: 52px;
+    z-index: 2;
+  }
+
+  .seminar-benefit-number::after {
+    width: 100%;
+    left: 0;
+    transform: none;
+    height: 8px;
+  }
+
+  .seminar-benefit-number .num {
+    font-size: 28px;
   }
 
   .seminar-benefit-head h3 {
-    font-size: 17px;
-  }
-
-  .seminar-benefit-head h3 span {
-    font-size: 32px;
+    font-size: 21px;
   }
 
   .seminar-benefit-body {
@@ -9974,12 +10019,13 @@ h1, h2, h3, h4, h5, h6,
   }
 
   .seminar-benefit-body p {
-    font-size: 17px;
+    font-size: 14px;
     line-height: 1.55;
   }
 
   .seminar-benefits-thumbs {
-    margin-top: 16px;
+    margin-top: 50px;
+    margin-bottom: 50px;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -10945,8 +10991,8 @@ h1, h2, h3, h4, h5, h6,
   }
 
   .curriculum-detail {
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
     box-sizing: border-box;
   }
 
@@ -10972,10 +11018,6 @@ h1, h2, h3, h4, h5, h6,
   .greeting-body-card {
     padding-left: 25px;
     padding-right: 25px;
-  }
-
-  .seminar-benefit-head h3 span {
-    font-size: 32px;
   }
 
   .seminar-benefits-thumbs {
@@ -11414,10 +11456,6 @@ html {
     max-width: 100%;
     margin-left: 0;
     margin-right: 0;
-  }
-
-  .seminar-benefit-head h3 span {
-    font-size: 32px;
   }
 
   .seminar-benefit-body,
@@ -11963,12 +12001,14 @@ html {
   max-width: 100%;
 }
 
-.seminar-benefit-card {
-  overflow: visible;
-}
+@media (min-width: 861px) {
+  .seminar-benefit-card {
+    overflow: visible;
+  }
 
-.seminar-benefit-head {
-  overflow: visible;
+  .seminar-benefit-head {
+    overflow: visible;
+  }
 }
 
 .seminar-benefit-head::before {
@@ -11982,10 +12022,12 @@ html {
   z-index: 0;
 }
 
-.seminar-benefit-head h3,
-.seminar-benefit-number {
-  position: relative;
-  z-index: 1;
+@media (min-width: 861px) {
+  .seminar-benefit-head h3,
+  .seminar-benefit-number {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 @media (min-width: 1280px) {
@@ -12402,8 +12444,7 @@ html {
     font-size: 16px;
   }
 
-  .seminar-benefit-head h3,
-  .seminar-benefit-head h3 span {
+  .seminar-benefit-head h3 {
     font-size: 24px;
   }
 
@@ -13009,7 +13050,6 @@ body :not(.fv):not(.fv *) {
     display: block;
     margin-top: 2px;
     color: #fff;
-    font-size: 26px;
     line-height: 1.15;
     font-weight: 600 !important;
     letter-spacing: 0.01em;
@@ -13068,7 +13108,16 @@ body :not(.fv):not(.fv *) {
     flex-direction: column;
   }
 
+  .seminar-benefit-head {
+    padding: 24px 20px 14px 140px;
+    border-radius: 10px 10px 0 0;
+    overflow: visible;
+  }
+
   .seminar-benefit-number {
+    position: absolute;
+    top: -22px;
+    left: 14px;
     width: 100px;
     height: 98px;
   }
@@ -13081,10 +13130,6 @@ body :not(.fv):not(.fv *) {
 
   .seminar-benefit-head h3 {
     font-size: 27px;
-  }
-
-  .seminar-benefit-head h3 span {
-    font-size: 42px;
   }
 
   .seminar-benefit-body p {
@@ -13510,10 +13555,6 @@ body :not(.fv):not(.fv *) {
     font-size: 22px;
   }
 
-  .seminar-benefit-head h3 span {
-    font-size: 32px;
-  }
-
   .seminar-benefit-body,
   .seminar-benefit-body p {
     font-size: 16px;
@@ -13846,5 +13887,38 @@ body :not(.fv):not(.fv *) {
 
   .result-item {
     width: 100%;
+  }
+
+  .container.voices-slider-area {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .voices-slider-area {
+    --voice-slider-width: 100vw;
+    --voice-side-peek: max(0px, calc((100vw - var(--voice-visible-width)) / 2));
+    --voice-nav-visible-count: 3;
+    --voice-nav-width: calc(
+      (var(--voice-card-width) * var(--voice-nav-visible-count)) +
+      (var(--voice-track-gap) * (var(--voice-nav-visible-count) - 1))
+    );
+  }
+
+  .voices-title-main,
+  .voices-title-accent {
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+
+  .roadmap-cta::before,
+  .roadmap-cta::after {
+    display: none;
+  }
+
+  .curriculum-dept-copy {
+    width: 100%;
+    max-width: 100%;
   }
 }
