@@ -3548,5 +3548,39 @@
       }
     })();
   </script>
+
+  <div class="fixed-cta-bar">
+    <a href="https://www.line.me/ja/" target="_blank" rel="noopener noreferrer" class="fixed-cta" aria-label="無料オンラインセミナーで結果の出し方を学ぶ">
+      <img src="assets/images/LINE_Brand_icon.png" alt="" aria-hidden="true">
+      <span class="fixed-cta-text">
+        <span class="fixed-cta-text-main">無料オンラインセミナー<span class="fixed-cta-text-main-last">で</span></span><br>
+        <span class="fixed-cta-text-sub">結果の出し方を学ぶ！</span>
+      </span>
+      <span class="fixed-cta-arrow" aria-hidden="true">▶</span>
+    </a>
+  </div>
+
+  <script>
+    (() => {
+      const bar = document.querySelector(".fixed-cta-bar");
+      const start = document.getElementById("troubles");
+      const end = document.getElementById("representative-greeting");
+      if (!bar || !start || !end) return;
+
+      const update = () => {
+        const scrollY = window.scrollY || window.pageYOffset;
+        const startTop = start.getBoundingClientRect().top + scrollY;
+        const endTop = end.getBoundingClientRect().top + scrollY;
+        if (scrollY >= startTop && scrollY < endTop) {
+          bar.classList.add("is-visible");
+        } else {
+          bar.classList.remove("is-visible");
+        }
+      };
+
+      window.addEventListener("scroll", update, { passive: true });
+      update();
+    })();
+  </script>
 </body>
 </html>
