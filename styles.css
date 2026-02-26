@@ -344,7 +344,15 @@ h1, h2, h3, h4, h5, h6,
   transition: filter 0.3s ease, brightness 0.3s ease;
 }
 
+.fv-cta.is-shown {
+  animation: none;
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
 .fv-cta:hover,
+.fv-cta.is-shown:hover,
 .voices-cta:hover,
 .participant-cta:hover,
 .seminar-benefits-cta:hover,
@@ -7015,7 +7023,7 @@ h1, h2, h3, h4, h5, h6,
 .curriculum-detail-bottom {
   margin-top: 56px;
   display: grid;
-  grid-template-columns: 250px minmax(320px, 400px) 250px;
+  grid-template-columns: 250px minmax(320px, 1000px) 250px;
   column-gap: 14px;
   justify-content: center;
   align-items: center;
@@ -7251,7 +7259,7 @@ h1, h2, h3, h4, h5, h6,
 
 .greeting-role {
   margin: 18px 0 0;
-  color: #d9a264;
+  color: #b07a3a;
   font-size: 30px;
   line-height: 1.34;
   font-weight: 400;
@@ -7849,7 +7857,10 @@ h1, h2, h3, h4, h5, h6,
     border-radius: 12px;
     padding: 0 20px;
     gap: 14px;
-    box-shadow: inset 0 -10px 0 #13af4e;
+    box-shadow: none;
+    background: linear-gradient(to top, #13af4e 10px, #10c654 10px);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 
   .footer-cta img {
@@ -10096,7 +10107,7 @@ h1, h2, h3, h4, h5, h6,
   }
 
   .site-footer {
-    padding: 22px 0 14px;
+    padding: 22px 0 54px;
   }
 
   .site-footer-inner {
@@ -10380,7 +10391,7 @@ h1, h2, h3, h4, h5, h6,
     max-width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
-    grid-template-columns: clamp(140px, 22vw, 250px) minmax(320px, 400px) clamp(140px, 22vw, 250px);
+    grid-template-columns: clamp(140px, 22vw, 250px) minmax(320px, 1000px) clamp(140px, 22vw, 250px);
     justify-content: space-between;
     column-gap: 0;
   }
@@ -12100,7 +12111,7 @@ html {
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   .strength-card {
@@ -12289,25 +12300,6 @@ html {
     font-size: 48px;
   }
 
-  .solution-top,
-  .solution-bottom,
-  .solution-pill-small,
-  .solution-copy-main,
-  .seminar-starter-hero-top,
-  .seminar-starter-hero-bottom,
-  .seminar-starter-hero-pill-top,
-  .strengths-title,
-  .strengths-lead-sub,
-  .strength-card-title,
-  .sns-total-prefix,
-  .sns-total-suffix,
-  .curriculum-founder-copy .curriculum-detail-title,
-  .curriculum-dept-title,
-  .roadmap-cta-top,
-  .roadmap-cta-bottom,
-  .roadmap-cta-pill.is-anim-ready.is-shown {
-    font-size: 32px;
-  }
 }
 
 @media (min-width: 861px) {
@@ -13688,7 +13680,7 @@ body :not(.fv):not(.fv *) {
 }
 
 .seminar-starter-thumbs.is-anim-ready {
-  margin-top: 30px;
+  margin-top: 50px;
 }
 
 @media (min-width: 861px) {
@@ -13994,6 +13986,35 @@ body :not(.fv):not(.fv *) {
   .footer-brand {
     margin-top: 20px;
   }
+
+  .seminar-starter-thumbs {
+    margin-top: 50px;
+  }
+
+  .about-aparise-inner {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 52%);
+    gap: 24px;
+  }
+
+  .media-showcase-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 20px;
+  }
+
+  .seminar-photo {
+    width: 60vw;
+    height: auto;
+  }
+
+  .seminar-photo img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .results {
+    padding-bottom: 14px;
+  }
 }
 
 /* Footer tablet scaling (from Aparise 3) */
@@ -14102,7 +14123,7 @@ body :not(.fv):not(.fv *) {
   .site-footer {
     height: auto;
     min-height: 0;
-    padding: 24px 60px 18px;
+    padding: 24px 60px 60px;
   }
 
   .site-footer .site-footer-inner {
@@ -14148,7 +14169,7 @@ body :not(.fv):not(.fv *) {
     left: auto;
     transform: none;
     z-index: auto;
-    margin-top: 60px;
+    margin-top: 10px;
   }
 
   .footer-nav {
@@ -14217,6 +14238,16 @@ body :not(.fv):not(.fv *) {
   left: 50%;
   bottom: 15px;
   transform: translateX(-50%);
+}
+
+@media (max-width: 860px) {
+  .site-footer .footer-copyright {
+    position: fixed;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+  }
 }
 
 @media (max-width: 1000px) {
