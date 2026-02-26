@@ -22,8 +22,27 @@
         <a href="#">選ばれる理由</a>
         <a href="#faq">よくあるご質問</a>
       </nav>
+      <button class="header-menu-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileNavModal">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
+
+  <div class="mobile-nav-modal" id="mobileNavModal" aria-hidden="true">
+    <button class="mobile-nav-modal-backdrop" type="button" aria-label="メニューを閉じる"></button>
+    <div class="mobile-nav-modal-panel" role="dialog" aria-modal="true" aria-label="メインメニュー">
+      <button class="mobile-nav-close" type="button" aria-label="メニューを閉じる">×</button>
+      <nav class="mobile-nav" aria-label="モバイルメインナビゲーション">
+        <a href="#voices">参加者の声</a>
+        <a href="#seminar">セミナー内容</a>
+        <a href="#about-aparise">アパリセとは</a>
+        <a href="#strengths">選ばれる理由</a>
+        <a href="#faq">よくあるご質問</a>
+      </nav>
+    </div>
+  </div>
 
   <main>
     <section class="fv">
@@ -634,6 +653,8 @@
         <span></span>
         <span></span>
         <span></span>
+        <span></span>
+        <span></span>
       </div>
       <div class="container about-aparise-inner">
         <div class="about-aparise-copy">
@@ -668,8 +689,8 @@
           <h2 class="strengths-title">なぜ、圧倒的に選ばれるのか？</h2>
           <div class="strengths-lead-box">
             <p class="strengths-lead-top">それは、</p>
-            <p class="strengths-lead-sub">アパリセのセミナーにおける</p>
-            <p class="strengths-lead-main">５つの大きな強み！</p>
+            <p class="strengths-lead-sub">アパリセのセミナーに</p>
+            <p class="strengths-lead-main"><span class="num">５</span>つの特徴があるから！</p>
           </div>
         </div>
       </div>
@@ -694,7 +715,7 @@
             </figure>
             <div class="strength-card-right">
               <div class="strength-card-top">
-                <h3 class="strength-card-title">業界No.<span class="num">1</span>が教える「<span class="strength-title-accent">稼ぐ力</span>」</h3>
+                <h3 class="strength-card-title">業界No.<span class="num">1</span>が教える<br>「<span class="strength-title-accent">稼ぐ力</span>」</h3>
                 <p class="strength-card-number num">01</p>
               </div>
               <p class="strength-card-body">
@@ -703,8 +724,8 @@
             </div>
           </article>
 
-          <article class="strength-card">
-            <figure class="strength-card-left">
+          <article class="strength-card strength-card--photo">
+            <figure class="strength-card-left strength-card-left--photo">
               <img class="strength-main-photo" src="assets/images/strengths2.png" alt="セミナー対談の様子">
             </figure>
             <div class="strength-card-right">
@@ -727,15 +748,15 @@
                 <img class="strength-achievement-phone" src="assets/images/smartphone.png" alt="">
               </div>
               <figcaption class="strength-achievement-record">
-                <img class="strength-achievement-crown strength-achievement-crown-left" src="assets/images/record_left2.png" alt="" aria-hidden="true">
+                <img class="strength-achievement-crown strength-achievement-crown-left" src="assets/images/strength-achievement-crown left.png" alt="" aria-hidden="true">
                 <p class="strength-achievement-copy">入会半年以内に<br>月利10万円越え</p>
                 <p class="strength-achievement-rate"><span class="num strength-achievement-rate-number">92</span><span class="strength-achievement-rate-suffix">%以上</span></p>
-                <img class="strength-achievement-crown strength-achievement-crown-right" src="assets/images/record_right2.png" alt="" aria-hidden="true">
+                <img class="strength-achievement-crown strength-achievement-crown-right" src="assets/images/strength-achievement-crown right.png" alt="" aria-hidden="true">
               </figcaption>
             </figure>
             <div class="strength-card-right">
               <div class="strength-card-top">
-                <h3 class="strength-card-title"><span class="num">92</span>%が成果を出す<span class="strength-title-accent">ロードマップ</span></h3>
+                <h3 class="strength-card-title"><span class="num">92</span>%が成果を出す<br><span class="strength-title-accent">ロードマップ</span></h3>
                 <p class="strength-card-number num">03</p>
               </div>
               <p class="strength-card-body">
@@ -744,8 +765,8 @@
             </div>
           </article>
 
-          <article class="strength-card">
-            <figure class="strength-card-left">
+          <article class="strength-card strength-card--photo">
+            <figure class="strength-card-left strength-card-left--photo">
               <img class="strength-main-photo" src="assets/images/strengths4.png" alt="共同セミナー開催の様子">
             </figure>
             <div class="strength-card-right">
@@ -759,13 +780,13 @@
             </div>
           </article>
 
-          <article class="strength-card">
-            <figure class="strength-card-left">
+          <article class="strength-card strength-card--photo">
+            <figure class="strength-card-left strength-card-left--photo">
               <img class="strength-main-photo" src="assets/images/strengths5.svg" alt="理想の未来のイメージ">
             </figure>
             <div class="strength-card-right">
               <div class="strength-card-top">
-                <h3 class="strength-card-title"><span class="strength-title-accent">理想の未来</span>への第一歩を築ける</h3>
+                <h3 class="strength-card-title"><span class="strength-title-accent">理想の未来</span>への<br>第一歩を築ける</h3>
                 <p class="strength-card-number num">05</p>
               </div>
               <p class="strength-card-body">
@@ -1591,28 +1612,33 @@
           </div>
 
           <div class="greeting-body-card">
-            <p class="greeting-text">
-              リユース物販を通して<br>
-              「人生に実現力を」持てる人を増やすことを理念に活動しています。<br>
-              <br>
-              昔の自分は、<br>
-              貯金もゼロ<br>
-              シャワーは100円で3分<br>
-              散髪はカットモデル<br>
-              <br>
-              そこからアパレルブランド物販を通して人生を変えることができました。<br>
-              <br>
-              昔の自分のように、お金を理由に何かを諦める人を減らすため、<br>
-              「誰もが再現」できて「結果が出る」ことを目指しアパリセを運営しています。
-            </p>
-            <p class="greeting-text">
-              リユース物販開始5ヶ月で月収120万円を達成し、その過程で得た“最短最速で結果を出すノウハウ”を体系化し、未経験でも迷わず実践できるカリキュラムとして整備。<br>
-              2019年にアパレル・ブランド物販スクール「アパリセ」を設立。<br>
-              <br>
-              現在はのべ受講生3,500名を超える業界最大級のスクールへ成長。<br>
-              リユース業界イベントでの登壇をはじめ、TV・雑誌出演、SNSなど各種メディアを通じて、<br>
-              日々、物販という選択肢の可能性を広めている。
-            </p>
+            <p class="greeting-summary">リユース物販を通して、<br>過去に諦めた夢へもう一度挑戦できる人を増やしたい。<br>「人生に実現力を」届けることを使命に活動しています。</p>
+            <button class="greeting-toggle" type="button" aria-expanded="false">詳細</button>
+            <div class="greeting-details">
+              <p class="greeting-text">
+                リユース物販を通して、<br>
+                過去に諦めた夢へもう一度挑戦できる人を増やしたい。<br>
+                「人生に実現力を」届けることを使命に活動しています。<br>
+                <br>
+                かつての私は、<br>
+                貯金はゼロ、<br>
+                シャワーは100円で3分、<br>
+                散髪はカットモデル。<br>
+                <br>
+                それでも、アパレルブランド物販に出会い、人生を変えることができました。<br>
+                <br>
+                あの頃の自分のように、お金を理由に夢を諦める人を一人でも減らしたい。<br>
+                「人生に実現力を」届けるために、誰でも再現できて結果が出るアパリセを運営しています。
+              </p>
+              <p class="greeting-text">
+                リユース物販開始5ヶ月で月収120万円を達成し、その過程で得た“最短最速で結果を出すノウハウ”を体系化し、未経験でも迷わず実践できるカリキュラムとして整備。<br>
+                2019年にアパレル・ブランド物販スクール「アパリセ」を設立。<br>
+                <br>
+                現在はのべ受講生3,500名を超える業界最大級のスクールへ成長。<br>
+                リユース業界イベントでの登壇をはじめ、TV・雑誌出演、SNSなど各種メディアを通じて、<br>
+                日々、物販という選択肢の可能性を広めている。
+              </p>
+            </div>
           </div>
         </article>
       </div>
@@ -1630,7 +1656,7 @@
 
     <section class="faq-section" id="faq">
       <div class="container faq-inner">
-        <h2 class="faq-title">オンラインセミナー参加時の<span>よくある質問</span></h2>
+        <h2 class="faq-title">オンラインセミナー参加時の<br><span>よくある質問</span></h2>
 
         <div class="faq-list">
           <article class="faq-item">
@@ -1773,27 +1799,32 @@
     <div class="container site-footer-inner">
       <div class="footer-dot-accent" aria-hidden="true"></div>
 
-      <a href="#" class="footer-cta" aria-label="無料オンラインセミナー申込">
-        <img src="assets/images/LINE_Brand_icon.png" alt="" aria-hidden="true">
-        <span class="footer-cta-copy">
-          <span class="footer-cta-main">公式LINEから</span>
-          <span class="footer-cta-sub">無料オンラインセミナー申込</span>
-        </span>
-        <span class="footer-cta-arrow" aria-hidden="true">▶</span>
-      </a>
+      <div class="footer-actions">
+        <a href="#" class="footer-cta" aria-label="無料オンラインセミナー申込">
+          <img src="assets/images/LINE_Brand_icon.png" alt="" aria-hidden="true">
+          <span class="footer-cta-copy">
+            <span class="footer-cta-main">公式LINEから</span>
+            <span class="footer-cta-sub">無料オンラインセミナー申込</span>
+          </span>
+          <span class="footer-cta-arrow" aria-hidden="true">▶</span>
+        </a>
 
-      <nav class="footer-nav" aria-label="フッターナビゲーション">
-        <a href="#voices">参加者の声</a>
-        <a href="#seminar">セミナー内容</a>
-        <a href="#about-aparise">アパリセとは</a>
-        <a href="#strengths">選ばれる理由</a>
-        <a href="#faq">よくあるご質問</a>
-        <a href="#site-footer">運営会社</a>
-      </nav>
+        <nav class="footer-nav" aria-label="フッターナビゲーション">
+          <a href="#voices">参加者の声</a>
+          <a href="#seminar">セミナー内容</a>
+          <a href="#about-aparise">アパリセとは</a>
+          <a href="#strengths">選ばれる理由</a>
+          <a href="#faq">よくあるご質問</a>
+        </nav>
+      </div>
 
-      <a href="#" class="footer-logo" aria-label="aparise">
-        <img src="assets/images/aparise_logo_orange.png" alt="aparise ロゴ">
-      </a>
+      <div class="footer-brand">
+        <p class="footer-brand-top">業界実績No.1の<br>アパレルブランド物販スクール</p>
+        <a href="#" class="footer-logo" aria-label="aparise">
+          <img src="assets/images/aparise_logo_orange.png" alt="aparise ロゴ">
+        </a>
+        <p class="footer-brand-bottom">アパリセ</p>
+      </div>
 
       <p class="footer-copyright">Copyright&copy;EXTAGE</p>
     </div>
@@ -2390,7 +2421,7 @@
       let timerId = null;
 
       const isDesktop = () => true;
-      const isMobile = () => window.matchMedia("(max-width: 860px)").matches;
+      const isTapFlipViewport = () => window.matchMedia("(max-width: 1279px)").matches;
       const getVisibleCount = () => {
         const cssCount = Number.parseInt(window.getComputedStyle(supportWrap).getPropertyValue("--support-visible-count"), 10);
         return Number.isFinite(cssCount) && cssCount > 0 ? cssCount : 1;
@@ -2615,7 +2646,7 @@
       });
 
       track.addEventListener("click", (event) => {
-        if (!isMobile()) {
+        if (!isTapFlipViewport()) {
           return;
         }
 
@@ -3313,42 +3344,233 @@
     })();
 
     (() => {
-      const fvSection = document.querySelector(".fv");
-      const followUpMenu = document.querySelector(".follow-up-menu");
+      const greetingCard = document.querySelector(".greeting-body-card");
+      const greetingToggle = greetingCard ? greetingCard.querySelector(".greeting-toggle") : null;
+      const isPcMq = window.matchMedia("(min-width: 1280px)");
 
-      if (!fvSection || !followUpMenu) {
+      if (!greetingCard || !greetingToggle) {
         return;
       }
+
+      const syncGreetingAccordionMode = () => {
+        if (isPcMq.matches) {
+          greetingCard.classList.remove("is-open");
+          greetingToggle.hidden = false;
+          greetingToggle.setAttribute("aria-expanded", "false");
+          return;
+        }
+
+        greetingCard.classList.add("is-open");
+        greetingToggle.hidden = true;
+        greetingToggle.setAttribute("aria-expanded", "true");
+      };
+
+      greetingToggle.addEventListener("click", () => {
+        if (!isPcMq.matches) {
+          return;
+        }
+        const isOpen = greetingCard.classList.toggle("is-open");
+        greetingToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      });
+
+      if (typeof isPcMq.addEventListener === "function") {
+        isPcMq.addEventListener("change", syncGreetingAccordionMode);
+      } else if (typeof isPcMq.addListener === "function") {
+        isPcMq.addListener(syncGreetingAccordionMode);
+      }
+
+      syncGreetingAccordionMode();
+    })();
+
+    (() => {
+      const fv = document.querySelector(".fv");
+      const fvTitleResult = document.querySelector(".fv-title-result");
+      const fvVisual = document.querySelector(".fv-visual");
+      const desktopMq = window.matchMedia("(min-width: 861px)");
+
+      if (!fv || !fvTitleResult || !fvVisual) {
+        return;
+      }
+
+      let rafId = 0;
+      const syncFvVisualOverlap = () => {
+        if (!desktopMq.matches) {
+          fv.style.setProperty("--fv-title-result-overlap", "0px");
+          return;
+        }
+
+        const titleWidth = fvTitleResult.getBoundingClientRect().width;
+        const overlap = Math.max(0, titleWidth * 0.2);
+        fv.style.setProperty("--fv-title-result-overlap", `${overlap}px`);
+      };
+
+      const requestSync = () => {
+        if (rafId) {
+          window.cancelAnimationFrame(rafId);
+        }
+        rafId = window.requestAnimationFrame(() => {
+          rafId = 0;
+          syncFvVisualOverlap();
+        });
+      };
+
+      requestSync();
+      window.addEventListener("resize", requestSync, { passive: true });
+      window.addEventListener("load", requestSync);
+
+      if (typeof desktopMq.addEventListener === "function") {
+        desktopMq.addEventListener("change", requestSync);
+      } else if (typeof desktopMq.addListener === "function") {
+        desktopMq.addListener(requestSync);
+      }
+
+      if (document.fonts && document.fonts.ready && typeof document.fonts.ready.then === "function") {
+        document.fonts.ready.then(requestSync).catch(() => {});
+      }
+    })();
+
+    (() => {
+      const menuToggle = document.querySelector(".header-menu-toggle");
+      const mobileNavModal = document.getElementById("mobileNavModal");
+
+      if (!menuToggle || !mobileNavModal) {
+        return;
+      }
+
+      const closeButton = mobileNavModal.querySelector(".mobile-nav-close");
+      const backdropButton = mobileNavModal.querySelector(".mobile-nav-modal-backdrop");
+      const modalLinks = Array.from(mobileNavModal.querySelectorAll(".mobile-nav a"));
+      const mobileMq = window.matchMedia("(max-width: 860px)");
+
+      const closeMenu = () => {
+        mobileNavModal.classList.remove("is-open");
+        mobileNavModal.setAttribute("aria-hidden", "true");
+        menuToggle.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("mobile-nav-open");
+      };
+
+      const openMenu = () => {
+        if (!mobileMq.matches) {
+          return;
+        }
+        mobileNavModal.classList.add("is-open");
+        mobileNavModal.setAttribute("aria-hidden", "false");
+        menuToggle.setAttribute("aria-expanded", "true");
+        document.body.classList.add("mobile-nav-open");
+      };
+
+      menuToggle.addEventListener("click", () => {
+        if (mobileNavModal.classList.contains("is-open")) {
+          closeMenu();
+          return;
+        }
+        openMenu();
+      });
+
+      if (closeButton) {
+        closeButton.addEventListener("click", closeMenu);
+      }
+
+      if (backdropButton) {
+        backdropButton.addEventListener("click", closeMenu);
+      }
+
+      modalLinks.forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
+
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeMenu();
+        }
+      });
+
+      const onBreakpointChange = () => {
+        if (!mobileMq.matches) {
+          closeMenu();
+        }
+      };
+
+      if (typeof mobileMq.addEventListener === "function") {
+        mobileMq.addEventListener("change", onBreakpointChange);
+      } else if (typeof mobileMq.addListener === "function") {
+        mobileMq.addListener(onBreakpointChange);
+      }
+    })();
+
+    (() => {
+      const fvSection = document.querySelector(".fv");
+      const footerSection = document.getElementById("site-footer");
+      const followUpMenu = document.querySelector(".follow-up-menu");
+      const desktopMq = window.matchMedia("(min-width: 861px)");
+
+      if (!fvSection || !footerSection || !followUpMenu) {
+        return;
+      }
+
+      let isFvInView = false;
+      let isFooterInView = false;
 
       const setFollowUpVisible = (visible) => {
         followUpMenu.classList.toggle("is-visible", visible);
       };
 
+      const syncFollowUpVisibility = () => {
+        const shouldShow = desktopMq.matches && !isFvInView && !isFooterInView;
+        setFollowUpVisible(shouldShow);
+      };
+
       const checkVisibilityByRect = () => {
-        const rect = fvSection.getBoundingClientRect();
         const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-        const isFvInView = rect.bottom > 0 && rect.top < viewportHeight;
-        setFollowUpVisible(!isFvInView);
+        const fvRect = fvSection.getBoundingClientRect();
+        const footerRect = footerSection.getBoundingClientRect();
+
+        isFvInView = fvRect.bottom > 0 && fvRect.top < viewportHeight;
+        isFooterInView = footerRect.bottom > 0 && footerRect.top < viewportHeight;
+        syncFollowUpVisibility();
       };
 
       checkVisibilityByRect();
 
       if ("IntersectionObserver" in window) {
         const observer = new IntersectionObserver((entries) => {
-          const entry = entries[0];
-          if (!entry) {
-            return;
-          }
-          setFollowUpVisible(!entry.isIntersecting);
+          entries.forEach((entry) => {
+            if (entry.target === fvSection) {
+              isFvInView = entry.isIntersecting;
+            } else if (entry.target === footerSection) {
+              isFooterInView = entry.isIntersecting;
+            }
+          });
+          syncFollowUpVisibility();
         }, {
-          threshold: 0.01
+          threshold: 0
         });
+
         observer.observe(fvSection);
+        observer.observe(footerSection);
+
+        const onDesktopChange = () => {
+          checkVisibilityByRect();
+        };
+        if (typeof desktopMq.addEventListener === "function") {
+          desktopMq.addEventListener("change", onDesktopChange);
+        } else if (typeof desktopMq.addListener === "function") {
+          desktopMq.addListener(onDesktopChange);
+        }
         return;
       }
 
       window.addEventListener("scroll", checkVisibilityByRect, { passive: true });
       window.addEventListener("resize", checkVisibilityByRect);
+
+      const onDesktopChange = () => {
+        checkVisibilityByRect();
+      };
+      if (typeof desktopMq.addEventListener === "function") {
+        desktopMq.addEventListener("change", onDesktopChange);
+      } else if (typeof desktopMq.addListener === "function") {
+        desktopMq.addListener(onDesktopChange);
+      }
     })();
   </script>
 </body>
