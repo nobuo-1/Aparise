@@ -103,6 +103,27 @@ h1, h2, h3, h4, h5, h6,
   font-weight: 400;
   letter-spacing: 0.02em;
   white-space: nowrap;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1.5px;
+  background: #ff650c;
+  transition: width 0.3s ease;
+}
+
+.main-nav a:hover {
+  color: #ff650c;
+}
+
+.main-nav a:hover::after {
+  width: 100%;
 }
 
 .fv {
@@ -313,6 +334,22 @@ h1, h2, h3, h4, h5, h6,
   line-height: 1;
   background: linear-gradient(180deg, var(--green) 0%, #11b84a 100%);
   box-shadow: inset 0 -8px 0 0 var(--green-dark);
+}
+
+.fv-cta,
+.voices-cta,
+.participant-cta,
+.seminar-benefits-cta,
+.footer-cta {
+  transition: filter 0.3s ease, brightness 0.3s ease;
+}
+
+.fv-cta:hover,
+.voices-cta:hover,
+.participant-cta:hover,
+.seminar-benefits-cta:hover,
+.footer-cta:hover {
+  filter: brightness(1.15);
 }
 
 .fv-cta-copy {
@@ -648,6 +685,7 @@ h1, h2, h3, h4, h5, h6,
 .voices-nav-prev {
   left: calc(50% - (var(--voice-slider-width) / 2));
   transform: translate(-50%, -50%);
+  opacity: 0.6;
 }
 
 .voices-nav-next::before {
@@ -658,6 +696,7 @@ h1, h2, h3, h4, h5, h6,
 .voices-nav-next {
   right: calc(50% - (var(--voice-slider-width) / 2));
   transform: translate(50%, -50%);
+  opacity: 0.6;
 }
 
 .voices-nav:disabled {
@@ -689,7 +728,6 @@ h1, h2, h3, h4, h5, h6,
 
 .voice-card {
   width: var(--voice-card-width);
-  height: 490px;
   flex: 0 0 var(--voice-card-width);
   border: 2px solid #e1e1e1;
   border-radius: 8px;
@@ -697,6 +735,10 @@ h1, h2, h3, h4, h5, h6,
   padding: 0 0 14px 0;
   display: flex;
   flex-direction: column;
+}
+
+.voices-track {
+  align-items: stretch;
 }
 
 .voice-card-top {
@@ -1818,6 +1860,7 @@ h1, h2, h3, h4, h5, h6,
 .participant-nav-prev {
   left: calc(50% - (var(--participant-slider-width) / 2));
   transform: translate(-50%, -50%);
+  opacity: 0.6;
 }
 
 .participant-nav-prev::before {
@@ -1828,6 +1871,7 @@ h1, h2, h3, h4, h5, h6,
 .participant-nav-next {
   right: calc(50% - (var(--participant-slider-width) / 2));
   transform: translate(50%, -50%);
+  opacity: 0.6;
 }
 
 .participant-nav-next::before {
@@ -2821,6 +2865,7 @@ h1, h2, h3, h4, h5, h6,
 .support-nav-prev {
   left: calc(50% - (var(--support-slider-width) / 2));
   transform: translate(-50%, -50%);
+  opacity: 0.6;
 }
 
 .support-nav-prev::before {
@@ -2832,6 +2877,7 @@ h1, h2, h3, h4, h5, h6,
   right: calc(50% - (var(--support-slider-width) / 2));
   transform: translate(50%, -50%);
   z-index: 5;
+  opacity: 0.6;
 }
 
 .support-nav-next::before {
@@ -3168,6 +3214,7 @@ h1, h2, h3, h4, h5, h6,
 .technical-nav-prev {
   left: calc(50% - (var(--technical-slider-width) / 2));
   transform: translate(-50%, -50%);
+  opacity: 0.6;
 }
 
 .technical-nav-prev::before {
@@ -3178,6 +3225,7 @@ h1, h2, h3, h4, h5, h6,
 .technical-nav-next {
   right: calc(50% - (var(--technical-slider-width) / 2));
   transform: translate(50%, -50%);
+  opacity: 0.6;
 }
 
 .technical-nav-next::before {
@@ -5319,10 +5367,6 @@ h1, h2, h3, h4, h5, h6,
 
   .voices-title-accent {
     font-size: 28px;
-  }
-
-  .voice-card {
-    height: 490px;
   }
 
   .voices-slider-area {
@@ -8736,10 +8780,6 @@ h1, h2, h3, h4, h5, h6,
     --voice-side-peek: max(0px, calc((100vw - var(--voice-visible-width)) / 2));
   }
 
-  .voice-card {
-    height: 490px;
-  }
-
   .voice-result-box {
     margin-top: 8px;
   }
@@ -10621,10 +10661,6 @@ h1, h2, h3, h4, h5, h6,
 
   .voices-slider-area {
     --voice-card-width: 350px;
-  }
-
-  .voice-card {
-    height: 490px;
   }
 
   .participant-slider-wrap {
@@ -12800,6 +12836,11 @@ html {
     gap: 5px;
     cursor: pointer;
     z-index: 10002;
+    transition: background 0.3s ease;
+  }
+
+  .header-menu-toggle:hover {
+    background: #fff5ef;
   }
 
   .header-menu-toggle span {
@@ -12808,6 +12849,11 @@ html {
     border-radius: 999px;
     background: #3a1a14;
     display: block;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+
+  .header-menu-toggle:hover span {
+    background: #ff650c;
   }
 
   .mobile-nav-modal {
@@ -12879,8 +12925,15 @@ html {
     font-size: 15px;
     font-weight: 400;
     line-height: 1.4;
-    padding: 14px 2px;
+    padding: 14px 8px;
     border-bottom: 1px solid #ededed;
+    border-radius: 6px;
+    transition: color 0.3s ease, background 0.3s ease;
+  }
+
+  .mobile-nav a:hover {
+    color: #ff650c;
+    background: #fff5ef;
   }
 
   .follow-up-menu,
@@ -13918,6 +13971,11 @@ body :not(.fv):not(.fv *) {
   }
 
   .curriculum-dept-copy {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .curriculum-founder-copy {
     width: 100%;
     max-width: 100%;
   }
