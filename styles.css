@@ -15255,3 +15255,57 @@ body :not(.fv):not(.fv *) {
     margin-bottom: 1px;
   }
 }
+
+@media (min-width: 861px) {
+  .voice-chart-number {
+    font-size: 32px;
+  }
+
+  .voice-chart-unit {
+    font-size: 20px;
+  }
+}
+
+.voices-slider-area,
+.support-slider,
+.technical-slider {
+  position: relative;
+}
+
+.slider-playback-indicator {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  width: 74px;
+  height: 74px;
+  border-radius: 999px;
+  background: rgba(18, 18, 18, 0.92);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  color: #ffffff;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.34);
+  font-size: 34px;
+  line-height: 1;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 6;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.slider-playback-indicator.is-visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.slider-playback-indicator.is-playing {
+  padding-left: 4px;
+  font-size: 32px;
+}
+
+.slider-playback-indicator.is-paused {
+  font-size: 33px;
+}

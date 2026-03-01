@@ -4,6 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aparise LP</title>
+  <link rel="icon" type="image/png" href="assets/images/hero-accent.png">
+  <link rel="shortcut icon" href="assets/images/hero-accent.png">
+  <link rel="apple-touch-icon" href="assets/images/hero-accent.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Aparise LP">
+  <meta property="og:image" content="assets/images/aparise_logo_orange.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aparise LP">
+  <meta name="twitter:image" content="assets/images/aparise_logo_orange.png">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Aparise",
+      "logo": "assets/images/hero-accent.png",
+      "image": "assets/images/hero-accent.png"
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -1793,9 +1811,42 @@
   </footer>
 
   <script>
+    const canToggleSliderPauseByClick = () => window.matchMedia("(min-width: 861px)").matches;
+
+    const createSliderPlaybackIndicator = (hostElement) => {
+      if (!hostElement) {
+        return () => {};
+      }
+
+      const indicator = document.createElement("span");
+      indicator.className = "slider-playback-indicator";
+      indicator.setAttribute("aria-hidden", "true");
+      hostElement.append(indicator);
+
+      let hideTimerId = null;
+
+      return (isPaused) => {
+        if (hideTimerId !== null) {
+          window.clearTimeout(hideTimerId);
+          hideTimerId = null;
+        }
+
+        indicator.textContent = isPaused ? "⏸" : "▶";
+        indicator.classList.toggle("is-paused", isPaused);
+        indicator.classList.toggle("is-playing", !isPaused);
+        indicator.classList.add("is-visible");
+
+        hideTimerId = window.setTimeout(() => {
+          indicator.classList.remove("is-visible");
+          hideTimerId = null;
+        }, 620);
+      };
+    };
+
     (() => {
       const track = document.getElementById("voicesTrack");
       const slider = document.querySelector(".voices-slider");
+      const sliderArea = slider ? (slider.closest(".voices-slider-area") || slider) : null;
       const prevBtn = document.querySelector(".voices-nav-prev");
       const nextBtn = document.querySelector(".voices-nav-next");
       const dots = Array.from(document.querySelectorAll(".voices-dots button"));
@@ -1824,10 +1875,12 @@
       let autoTimerId = null;
       let barTimers = [];
       let voiceBarAnimationUnlocked = false;
+      let isUserPaused = false;
       const voiceBarDurations = {
         first: "1.08s",
         normal: "0.52s"
       };
+      const showPlaybackIndicator = createSliderPlaybackIndicator(sliderArea);
 
       const clearBarTimers = () => {
         barTimers.forEach((timerId) => {
@@ -2077,7 +2130,7 @@
 
       const startAutoSlide = () => {
         stopAutoSlide();
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        if (isUserPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
           return;
         }
         if (getPageCount() <= 1) {
@@ -2103,14 +2156,37 @@
         goNext();
       });
 
+      const toggleUserPauseByCard = () => {
+        if (!canToggleSliderPauseByClick()) {
+          return;
+        }
+
+        isUserPaused = !isUserPaused;
+        if (isUserPaused) {
+          stopAutoSlide();
+        } else {
+          if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && !isTransitioning && getPageCount() > 1) {
+            goNext();
+          }
+          startAutoSlide();
+        }
+        showPlaybackIndicator(isUserPaused);
+      };
+
+      track.addEventListener("click", (event) => {
+        const card = event.target.closest(".voice-card");
+        if (!card || !track.contains(card)) {
+          return;
+        }
+        toggleUserPauseByCard();
+      });
+
       dots.forEach((dot, dotIndex) => {
         dot.addEventListener("click", () => {
           goToPage(dotIndex);
         });
       });
 
-      slider.addEventListener("mouseenter", stopAutoSlide);
-      slider.addEventListener("mouseleave", startAutoSlide);
       slider.addEventListener("touchstart", stopAutoSlide, { passive: true });
       slider.addEventListener("touchend", startAutoSlide, { passive: true });
       slider.addEventListener("focusin", stopAutoSlide);
@@ -2386,6 +2462,7 @@
       let timerId = null;
       let preFlipTimerId = null;
       let postTapAdvanceTimerId = null;
+      let isUserPaused = false;
 
       const isDesktop = () => true;
       const isTapFlipViewport = () => window.matchMedia("(max-width: 1279px)").matches;
@@ -2394,6 +2471,7 @@
       const preFlipDurationMs = 700;
       const preFlipHoldMs = 160;
       const preFlipHoldPhoneMs = 5000;
+      const showPlaybackIndicator = createSliderPlaybackIndicator(slider);
       const getVisibleCount = () => {
         const cssCount = Number.parseInt(window.getComputedStyle(supportWrap).getPropertyValue("--support-visible-count"), 10);
         return Number.isFinite(cssCount) && cssCount > 0 ? cssCount : 1;
@@ -2673,7 +2751,7 @@
 
       const startAutoSlide = () => {
         window.clearInterval(timerId);
-        if (!isDesktop() || prefersReducedMotion()) {
+        if (isUserPaused || !isDesktop() || prefersReducedMotion()) {
           return;
         }
 
@@ -2707,16 +2785,42 @@
         goNext({ skipPreFlip: isTapFlipViewport() });
       });
 
+      const toggleUserPauseByCard = () => {
+        if (!canToggleSliderPauseByClick()) {
+          return;
+        }
+
+        isUserPaused = !isUserPaused;
+        if (isUserPaused) {
+          clearPostTapAdvanceTimer();
+          cancelPreFlip();
+          stopAutoSlide();
+        } else {
+          clearPostTapAdvanceTimer();
+          cancelPreFlip();
+          if (!prefersReducedMotion() && !isTransitioning && getPageCount() > 1) {
+            goNext({ skipPreFlip: true });
+          }
+          startAutoSlide();
+        }
+        showPlaybackIndicator(isUserPaused);
+      };
+
       track.addEventListener("click", (event) => {
+        const card = event.target.closest(".support-flip-card");
+        if (!card || !track.contains(card)) {
+          return;
+        }
+
+        if (canToggleSliderPauseByClick()) {
+          toggleUserPauseByCard();
+          return;
+        }
+
         if (!isTapFlipViewport()) {
           return;
         }
         if (isTransitioning) {
-          return;
-        }
-
-        const card = event.target.closest(".support-flip-card");
-        if (!card || !track.contains(card)) {
           return;
         }
 
@@ -2745,8 +2849,6 @@
         }
       });
 
-      slider.addEventListener("mouseenter", stopAutoSlide);
-      slider.addEventListener("mouseleave", startAutoSlide);
       slider.addEventListener("touchstart", stopAutoSlide, { passive: true });
       slider.addEventListener("touchend", startAutoSlide, { passive: true });
       slider.addEventListener("focusin", stopAutoSlide);
@@ -2790,6 +2892,8 @@
       let pendingJumpTrackIndex = null;
       let isTransitioning = false;
       let timerId = null;
+      let isUserPaused = false;
+      const showPlaybackIndicator = createSliderPlaybackIndicator(slider);
 
       const isDesktop = () => true;
       const getVisibleCount = () => {
@@ -2890,7 +2994,7 @@
 
       const startAutoSlide = () => {
         stopAutoSlide();
-        if (!isDesktop() || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        if (isUserPaused || !isDesktop() || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
           return;
         }
         if (getPageCount() <= 1) {
@@ -2983,8 +3087,30 @@
         goNext();
       });
 
-      slider.addEventListener("mouseenter", stopAutoSlide);
-      slider.addEventListener("mouseleave", startAutoSlide);
+      const toggleUserPauseByCard = () => {
+        if (!canToggleSliderPauseByClick()) {
+          return;
+        }
+
+        isUserPaused = !isUserPaused;
+        if (isUserPaused) {
+          stopAutoSlide();
+        } else {
+          if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && !isTransitioning && getPageCount() > 1) {
+            goNext();
+          }
+          startAutoSlide();
+        }
+        showPlaybackIndicator(isUserPaused);
+      };
+
+      track.addEventListener("click", (event) => {
+        const card = event.target.closest(".technical-card");
+        if (!card || !track.contains(card)) {
+          return;
+        }
+        toggleUserPauseByCard();
+      });
       slider.addEventListener("touchstart", stopAutoSlide, { passive: true });
       slider.addEventListener("touchend", startAutoSlide, { passive: true });
       slider.addEventListener("focusin", stopAutoSlide);
