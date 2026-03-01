@@ -15327,3 +15327,35 @@ body :not(.fv):not(.fv *) {
     display: block;
   }
 }
+
+@media (min-width: 1001px) and (max-width: 1279px) {
+  .seminar-starter-thumbs.is-anim-ready {
+    --starter-thumb-gap: clamp(12px, 1.6vw, 20px);
+    --starter-thumb-min: 220px;
+    --starter-thumb-max: 380px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container.seminar-starter-benefits-inner {
+    width: min(1400px, calc(100% - 32px));
+  }
+
+  .seminar-starter-thumbs.is-anim-ready {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .seminar-starter-thumbs.is-anim-ready .seminar-starter-thumb,
+  .seminar-starter-thumbs.is-anim-ready .seminar-starter-thumb.is-shown {
+    width: 100%;
+    max-width: 417px;
+    flex-basis: auto;
+  }
+
+  .seminar-starter-thumbs.is-anim-ready .seminar-starter-thumb img {
+    width: 100%;
+    max-width: 417px;
+  }
+}
