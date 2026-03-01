@@ -14919,6 +14919,12 @@ body :not(.fv):not(.fv *) {
   }
 }
 
+@media (min-width: 500px) {
+  .voice-monthly-profit {
+    height: 26px;
+  }
+}
+
 @media (max-width: 860px) {
   .curriculum-detail .container.curriculum-detail-inner {
     width: 100%;
