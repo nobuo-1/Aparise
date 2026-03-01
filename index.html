@@ -681,7 +681,7 @@
             </figure>
             <div class="strength-card-right">
               <div class="strength-card-top">
-                <h3 class="strength-card-title">あなたに合った<span class="strength-title-accent">「無理のない商材・手法」</span><br>の選び方がわかる</h3>
+                <h3 class="strength-card-title">あなたに合った<br class="strength-title-break-mobile"><span class="strength-title-accent">「無理のない商材・手法」</span><br>の選び方がわかる</h3>
                 <p class="strength-card-number num">02</p>
               </div>
               <p class="strength-card-body">
@@ -696,7 +696,7 @@
             </figure>
             <div class="strength-card-right">
               <div class="strength-card-top">
-                <h3 class="strength-card-title">物販スキル習得のために<br><span class="strength-title-accent">「本当に必要なこと」</span>が明確になる</h3>
+                <h3 class="strength-card-title">物販スキル習得のために<br><span class="strength-title-accent">「本当に必要なこと」</span><br class="strength-title-break-mobile">が明確になる</h3>
                 <p class="strength-card-number num">03</p>
               </div>
               <p class="strength-card-body">
@@ -2385,12 +2385,15 @@
       let isPreFlipping = false;
       let timerId = null;
       let preFlipTimerId = null;
+      let postTapAdvanceTimerId = null;
 
       const isDesktop = () => true;
       const isTapFlipViewport = () => window.matchMedia("(max-width: 1279px)").matches;
+      const isPhoneOrTabletViewport = () => window.matchMedia("(max-width: 1279px)").matches;
       const prefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const preFlipDurationMs = 700;
       const preFlipHoldMs = 160;
+      const preFlipHoldPhoneMs = 5000;
       const getVisibleCount = () => {
         const cssCount = Number.parseInt(window.getComputedStyle(supportWrap).getPropertyValue("--support-visible-count"), 10);
         return Number.isFinite(cssCount) && cssCount > 0 ? cssCount : 1;
@@ -2481,6 +2484,35 @@
         }
       };
 
+      const clearPostTapAdvanceTimer = () => {
+        if (postTapAdvanceTimerId !== null) {
+          window.clearTimeout(postTapAdvanceTimerId);
+          postTapAdvanceTimerId = null;
+        }
+      };
+
+      const scheduleNextAfterTapClose = () => {
+        if (!isPhoneOrTabletViewport()) {
+          return;
+        }
+        if (getPageCount() <= 1) {
+          startAutoSlide();
+          return;
+        }
+
+        clearPostTapAdvanceTimer();
+        stopAutoSlide();
+        postTapAdvanceTimerId = window.setTimeout(() => {
+          postTapAdvanceTimerId = null;
+          if (isTransitioning || isPreFlipping) {
+            startAutoSlide();
+            return;
+          }
+          goNext({ skipPreFlip: true });
+          startAutoSlide();
+        }, preFlipDurationMs + 40);
+      };
+
       const runPreFlipBeforeSlide = (onComplete) => {
         if (!isTapFlipViewport() || prefersReducedMotion()) {
           onComplete();
@@ -2505,6 +2537,7 @@
         closeOpenedCards();
         currentCard.classList.add("is-open");
 
+        const preFlipHoldDelayMs = isPhoneOrTabletViewport() ? preFlipHoldPhoneMs : preFlipHoldMs;
         preFlipTimerId = window.setTimeout(() => {
           currentCard.classList.remove("is-open");
           preFlipTimerId = window.setTimeout(() => {
@@ -2512,7 +2545,7 @@
             isPreFlipping = false;
             onComplete();
           }, preFlipDurationMs);
-        }, preFlipDurationMs + preFlipHoldMs);
+        }, preFlipDurationMs + preFlipHoldDelayMs);
       };
 
       const setTrackPosition = (trackIndex, animate = true) => {
@@ -2559,6 +2592,7 @@
       };
 
       const renderImmediate = () => {
+        clearPostTapAdvanceTimer();
         cancelPreFlip();
         rebuildClones();
 
@@ -2588,8 +2622,16 @@
         }
 
         const pageCount = getPageCount();
-        if (pageCount <= 1 || isTransitioning || isPreFlipping) {
+        if (pageCount <= 1 || isTransitioning) {
           return;
+        }
+
+        if (isPreFlipping) {
+          if (skipPreFlip && isPhoneOrTabletViewport()) {
+            cancelPreFlip();
+          } else {
+            return;
+          }
         }
 
         if (!skipPreFlip && isTapFlipViewport() && !prefersReducedMotion()) {
@@ -2656,10 +2698,12 @@
       });
 
       prevBtn.addEventListener("click", () => {
+        clearPostTapAdvanceTimer();
         goPrev({ skipPreFlip: isTapFlipViewport() });
       });
 
       nextBtn.addEventListener("click", () => {
+        clearPostTapAdvanceTimer();
         goNext({ skipPreFlip: isTapFlipViewport() });
       });
 
@@ -2667,7 +2711,7 @@
         if (!isTapFlipViewport()) {
           return;
         }
-        if (isTransitioning || isPreFlipping) {
+        if (isTransitioning) {
           return;
         }
 
@@ -2676,10 +2720,28 @@
           return;
         }
 
-        const willOpen = !card.classList.contains("is-open");
+        clearPostTapAdvanceTimer();
+        const targetWasOpen = card.classList.contains("is-open");
+        const tappedCenterOpen = (
+          isPhoneOrTabletViewport() &&
+          targetWasOpen &&
+          card.classList.contains("is-center")
+        );
+
+        if (isPreFlipping) {
+          if (isPhoneOrTabletViewport()) {
+            cancelPreFlip();
+          } else {
+            return;
+          }
+        }
+
+        const willOpen = !targetWasOpen;
         closeOpenedCards();
         if (willOpen) {
           card.classList.add("is-open");
+        } else if (tappedCenterOpen) {
+          scheduleNextAfterTapClose();
         }
       });
 
