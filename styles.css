@@ -15189,3 +15189,69 @@ body :not(.fv):not(.fv *) {
     max-width: 100%;
   }
 }
+
+@media (max-width: 340px) {
+  .strength-card-title {
+    font-size: 14px;
+  }
+
+  .support-card.support-card-message,
+  .support-card.support-card-message p {
+    font-size: 9px;
+  }
+
+  .roadmap-subtitle {
+    font-size: 13px;
+  }
+
+  .seminar-benefit-body,
+  .seminar-benefit-body p {
+    font-size: 12px;
+  }
+
+  .curriculum-founder-text {
+    font-size: 12px;
+  }
+
+  .greeting-role.is-shown,
+  .greeting-name {
+    font-size: 16px;
+  }
+
+  .greeting-hero,
+  .greeting-copy {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .footer-logo {
+    width: 140px;
+  }
+}
+
+@media (max-width: 860px) {
+  .site-footer .footer-copyright,
+  .footer-copyright {
+    font-size: 8px;
+  }
+}
+
+@media (min-width: 861px) and (max-width: 1000px) {
+  .site-footer {
+    padding-bottom: 0;
+  }
+
+  .footer-nav {
+    margin-bottom: 50px;
+  }
+}
+
+.voice-monthly-number {
+  margin-bottom: 2px;
+}
+
+@media (max-width: 860px) {
+  .voice-monthly-number {
+    margin-bottom: 1px;
+  }
+}
