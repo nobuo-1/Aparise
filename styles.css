@@ -10784,16 +10784,20 @@ h1, h2, h3, h4, h5, h6,
     position: absolute;
     left: 50%;
     bottom: 8px;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateZ(0);
     font-size: 10px;
     line-height: 1;
     letter-spacing: 0.1em;
+    font-family: "Arial", "Helvetica Neue", sans-serif;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
     color: #3a96fa;
     background: #fff;
     border: 1px solid #3a96fa;
     border-radius: 999px;
     padding: 3px 8px 2px;
     z-index: 4;
+    will-change: opacity, transform;
   }
 
   .support-flip-card.is-open::after {
@@ -11710,16 +11714,20 @@ html {
     position: absolute;
     left: 50%;
     bottom: 8px;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateZ(0);
     font-size: 10px;
     line-height: 1;
     letter-spacing: 0.1em;
+    font-family: "Arial", "Helvetica Neue", sans-serif;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
     color: #3a96fa;
     background: #fff;
     border: 1px solid #3a96fa;
     border-radius: 999px;
     padding: 3px 8px 2px;
     z-index: 4;
+    will-change: opacity, transform;
   }
 
   .support-flip-card.is-open::after {
@@ -15308,4 +15316,14 @@ body :not(.fv):not(.fv *) {
 
 .slider-playback-indicator.is-paused {
   font-size: 33px;
+}
+
+.curriculum-title-break-400 {
+  display: none;
+}
+
+@media (max-width: 400px) {
+  .curriculum-title-break-400 {
+    display: block;
+  }
 }
