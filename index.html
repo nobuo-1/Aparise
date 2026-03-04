@@ -3451,14 +3451,30 @@
         window.setTimeout(resolve, total + 40);
       });
 
+      const revealSeminarStarterImmediately = () => {
+        const pillTargets = [seminarStarterHeroPill, seminarStarterFooterPill].filter(Boolean);
+        pillTargets.forEach((target) => {
+          target.classList.add("is-anim-ready");
+          target.classList.add("is-shown");
+        });
+
+        if (seminarStarterThumbsWrap) {
+          seminarStarterThumbsWrap.classList.add("is-anim-ready");
+        }
+        seminarStarterThumbs.forEach((thumb) => {
+          thumb.classList.add("is-shown");
+        });
+      };
+
       const animateSeminarStarterContent = () => new Promise((resolve) => {
-        if (!window.matchMedia("(min-width: 1181px)").matches) {
+        const pillTargets = [seminarStarterHeroPill, seminarStarterFooterPill].filter(Boolean);
+        if (pillTargets.length === 0 && seminarStarterThumbs.length === 0) {
           resolve();
           return;
         }
 
-        const pillTargets = [seminarStarterHeroPill, seminarStarterFooterPill].filter(Boolean);
-        if (pillTargets.length === 0 && seminarStarterThumbs.length === 0) {
+        if (!window.matchMedia("(min-width: 1181px)").matches) {
+          revealSeminarStarterImmediately();
           resolve();
           return;
         }
