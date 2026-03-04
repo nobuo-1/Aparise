@@ -14939,10 +14939,16 @@ body :not(.fv):not(.fv *) {
 
 @media (min-width: 500px) and (max-width: 649px) {
   .fv-copy.is-anim-ready {
-    width: calc(100% - 160px);
-    max-width: calc(100% - 160px);
-    margin-left: 18px;
-    margin-right: 80px;
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .fv-copy.is-anim-ready > .fv-cta.is-shown {
+    margin-left: auto;
+    margin-right: auto;
+    margin-inline: auto;
   }
 }
 
@@ -15584,20 +15590,23 @@ body :not(.fv):not(.fv *) {
 
 @media (min-width: 1001px) {
   .footer-legal-links {
-    width: 80%;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: max-content;
+    max-width: calc(100% - 48px);
+    grid-template-columns: repeat(4, max-content);
+    justify-content: center;
     gap: 0 12px;
   }
 
   .footer-legal-links a {
-    font-size: 10px;
+    font-size: 12px;
+    white-space: nowrap;
   }
 }
 
 @media (max-width: 1000px) {
   .site-footer {
-    height: 720px;
-    min-height: 720px;
+    height: 580px;
+    min-height: 580px;
     padding-top: 30px;
     padding-bottom: 0;
   }
@@ -15630,6 +15639,7 @@ body :not(.fv):not(.fv *) {
     display: grid;
     grid-template-columns: 1fr;
     gap: 8px;
+    row-gap: 0;
   }
 
   .site-footer .footer-copyright,
@@ -15691,6 +15701,78 @@ body :not(.fv):not(.fv *) {
   .fv-stripes {
     left: 130px;
   }
+
+  .seminar-starter-footer {
+    margin-top: 0;
+    height: 75px;
+    min-height: 75px;
+  }
+
+  .seminar-starter-footer-pill {
+    font-size: 24px;
+  }
+
+  #support-instructors {
+    padding-top: 30px;
+  }
+
+  #about-aparise {
+    padding-bottom: 0;
+  }
+
+  .seminar-section {
+    padding-bottom: 20px;
+  }
+
+  .voices {
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 865px) {
+  .seminar-section {
+    background: #fff6e3;
+    padding-top: 30px;
+    padding-bottom: 0;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 860px) {
+  .fv {
+    height: 490px;
+    min-height: 490px;
+  }
+
+  .fv-sub-copy.is-shown {
+    margin-top: 60px;
+  }
+}
+
+@media (max-width: 499px) {
+  .fv-sub-copy.is-shown {
+    margin-top: 50px;
+  }
+}
+
+@media (min-width: 366px) and (max-width: 499px) {
+  .fv {
+    height: 485px;
+    min-height: 485px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 499px) {
+  .fv {
+    height: 495px;
+    min-height: 495px;
+  }
+}
+
+@media (max-width: 365px) {
+  .fv {
+    height: 450px;
+    min-height: 450px;
+  }
 }
 
 @media (max-width: 400px) {
@@ -15733,5 +15815,146 @@ body :not(.fv):not(.fv *) {
 
   .about-aparise {
     margin-bottom: 0;
+  }
+}
+
+.voices {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.troubles {
+  padding-top: 60px;
+}
+
+.solution,
+.seminar-starter-benefits,
+.strengths-head,
+.strengths-body,
+.about-aparise,
+.support-instructors,
+.technical-instructors,
+.sns-intro,
+.media-showcase,
+.student-activity,
+.roadmap-intro,
+.curriculum-detail,
+.representative-greeting,
+.representative-greeting.is-anim-ready,
+.roadmap-cta,
+.seminar-benefits,
+.faq-section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.seminar-section {
+  padding-bottom: 60px;
+}
+
+@media (min-width: 861px) {
+  .seminar-starter-thumbs.is-anim-ready {
+    width: min(100%, calc(100vw - 24px));
+    max-width: none;
+  }
+
+  .seminar-starter-thumbs.is-anim-ready .seminar-starter-thumb,
+  .seminar-starter-thumbs.is-anim-ready .seminar-starter-thumb.is-shown {
+    width: calc((100% - (var(--starter-thumb-gap, 24px) * 2)) / 3);
+    max-width: none;
+    flex: 0 1 calc((100% - (var(--starter-thumb-gap, 24px) * 2)) / 3);
+  }
+
+  .seminar-starter-thumbs.is-anim-ready .seminar-starter-thumb img {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 861px) and (max-width: 1000px) {
+  .footer-legal-links a,
+  .footer-brand-top,
+  .footer-nav,
+  .footer-nav a {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 850px) {
+  .greeting-hero,
+  .greeting-copy {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 860px) {
+  .solution,
+  .seminar-section,
+  .strengths-head,
+  .about-aparise,
+  .support-instructors,
+  .technical-instructors,
+  .sns-intro,
+  .media-showcase,
+  .student-activity,
+  .roadmap-intro,
+  .curriculum-detail,
+  .greeting-hero,
+  .greeting-copy {
+    padding-top: 0;
+  }
+
+  .strengths-head {
+    padding-bottom: 20px;
+  }
+
+  .strengths-body {
+    padding-top: 20px;
+  }
+
+  .about-aparise {
+    margin-top: 0;
+  }
+
+  .seminar-section {
+    padding-top: 30px;
+    padding-bottom: 0;
+  }
+
+  .footer-legal-links a,
+  .footer-brand-top,
+  .footer-nav,
+  .footer-nav a,
+  .site-footer .footer-copyright,
+  .footer-copyright {
+    font-size: 12px;
+  }
+
+  .faq-title {
+    margin-bottom: 30px;
+  }
+
+  .voices {
+    padding-bottom: 0;
+  }
+}
+
+.seminar-starter-footer {
+  height: auto;
+  min-height: 0;
+}
+
+@media (max-width: 499px) {
+  .seminar-starter-footer-pill {
+    margin-top: 10px;
+  }
+
+  #seminar-starter-benefits {
+    padding-bottom: 30px;
+  }
+
+  #support-instructors {
+    padding-top: 60px;
+    padding-bottom: 30px;
   }
 }
